@@ -70,6 +70,26 @@ public class MovementTestCases {
         this.game.moveRight();
         assertArrayEquals(game.getBoard(), expectedBoard);
     }
+    
+    public void testIsLose() {
+        int[][] testBoard1 = new int[][]{
+                {2,16,8,2},
+                {128,8,2,4},
+                {32,64,16,4},
+                {256,16,2,8}
+            };
+        game.setBoard(testBoard1);
+        assertTrue(this.game.isLost());
+        
+        int[][] testBoard2 = new int[][]{
+                {2,16,8,2},
+                {128,8,2,4},
+                {32,64,16,4},
+                {256,64,2,8}
+            };
+        game.setBoard(testBoard2);
+        assertFalse(this.game.isLost());
+    }
 
 
 }

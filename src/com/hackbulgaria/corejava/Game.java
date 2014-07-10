@@ -34,7 +34,7 @@ public class Game {
                     column.add(board[x][y]);
                 }
             }            
-            createNewColumn(column, newColumn);   
+            createNewList(column, newColumn);   
             for(int x=boardDimensions-1; x>=0; x--) {
                 if (!newColumn.isEmpty()) {
                     board[x][y] = newColumn.get(0);
@@ -58,7 +58,7 @@ public class Game {
                     column.add(board[x][y]);
                 }
             }
-            createNewColumn(column, newColumn);            
+            createNewList(column, newColumn);            
             for(int x=0; x<boardDimensions; x++) {
                 if (!newColumn.isEmpty()) {
                     board[x][y] = newColumn.get(0);
@@ -72,21 +72,21 @@ public class Game {
     }
     
     public void moveLeft() {      
-        List<Integer> column = new ArrayList<>();
-        List<Integer> newColumn = new ArrayList<>();
+        List<Integer> row = new ArrayList<>();
+        List<Integer> newRow = new ArrayList<>();
         for(int x=0; x<boardDimensions; x++) {           
-            column.clear();
-            newColumn.clear();           
+            row.clear();
+            newRow.clear();           
             for(int y=0; y<boardDimensions; y++) {
                 if(board[x][y]!=0) {
-                    column.add(board[x][y]);
+                    row.add(board[x][y]);
                 }
             }
-            createNewColumn(column, newColumn);            
+            createNewList(row, newRow);            
             for(int y=0; y<boardDimensions; y++) {
-                if (!newColumn.isEmpty()) {
-                    board[x][y] = newColumn.get(0);
-                    newColumn.remove(0);
+                if (!newRow.isEmpty()) {
+                    board[x][y] = newRow.get(0);
+                    newRow.remove(0);
                 }
                 else {
                     board[x][y] = 0;
@@ -96,21 +96,21 @@ public class Game {
     }
     
     public void moveRight() {    
-        List<Integer> column = new ArrayList<>();
-        List<Integer> newColumn = new ArrayList<>();
+        List<Integer> row = new ArrayList<>();
+        List<Integer> newRow = new ArrayList<>();
         for(int x=0; x<boardDimensions; x++) {            
-            column.clear();
-            newColumn.clear();
+            row.clear();
+            newRow.clear();
             for(int y=boardDimensions-1; y>=0; y--) {
                 if(board[x][y]!=0) {
-                    column.add(board[x][y]);
+                    row.add(board[x][y]);
                 }
             }            
-            createNewColumn(column, newColumn);   
+            createNewList(row, newRow);   
             for(int y=boardDimensions-1; y>=0; y--) {
-                if (!newColumn.isEmpty()) {
-                    board[x][y] = newColumn.get(0);
-                    newColumn.remove(0);
+                if (!newRow.isEmpty()) {
+                    board[x][y] = newRow.get(0);
+                    newRow.remove(0);
                 }
                 else {
                     board[x][y] = 0;
@@ -119,32 +119,53 @@ public class Game {
         }
     }
     
-    public boolean isLost() {
+    private void createNewList (List<Integer> currentList, List<Integer> newList) {
+        if(!currentList.isEmpty()) {
+            for(int i=0; i<currentList.size(); i++) {
+                if(i<currentList.size()-1 && currentList.get(i)==currentList.get(i+1)) {
+                    newList.add(currentList.get(i)*2);
+                    currentList.remove(i+1);
+                    currentList.add(0);                        
+                }
+                else {
+                    newList.add(currentList.get(i));
+                }
+            }
+        }
+    }
+    
+    public boolean hasNullElements() {
         
         for(int i=0; i<boardDimensions; i++) {
             for(int j=0; j<boardDimensions; j++) {
                 if(board[i][j]==0) {
-                    return false;                    
+                    return true;                    
                 }
             }
         }
-        return true;
+        return false;
     }
     
-    private void createNewColumn(List<Integer> column, List<Integer> newColumn) {
-        if(!column.isEmpty()) {
-            for(int i=0; i<column.size(); i++) {
-                if(i<column.size()-1 && column.get(i)==column.get(i+1)) {
-                    newColumn.add(column.get(i)*2);
-                    column.remove(i+1);
-                    column.add(0);                        
+    public boolean isLost() {        
+        if(!hasNullElements()) {
+            for(int x=0; x<boardDimensions; x++) {
+                for(int y=0; y<boardDimensions-1; y++) {
+                    if(board[x][y]==board[x][y+1]) {
+                        return false;
+                    }
                 }
-                else {
-                    newColumn.add(column.get(i));
+            }
+            for(int y=0; y<boardDimensions; y++) {
+                for(int x=0; x<boardDimensions-1; x++) {
+                    if(board[x][y]==board[x+1][y]) {
+                        return false;
+                    }
                 }
             }
         }
+        return false;
     }
+    
     
     private void placeRandomNumber() {
         int number;
