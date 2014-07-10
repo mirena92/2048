@@ -18,6 +18,7 @@ public class Game {
         placeRandomNumber();
         placeRandomNumber();
         undo.push(board);
+        board=cloneBoard();
     }
     
     public int[][] getBoard() {
@@ -50,14 +51,7 @@ public class Game {
                 }
             }
         }
-        if (!undo.isEmpty()) {
-            if (!Arrays.deepEquals(undo.peek(), board)) {
-                if (hasZeroElements()) {
-                    placeRandomNumber();
-                    undo.push(board);
-                }
-            }
-        }
+        placeNumber();
     }
     
     public void moveUp() {      
@@ -82,14 +76,7 @@ public class Game {
                 }
             }
         }
-        if (!undo.isEmpty()) {
-            if (!Arrays.deepEquals(undo.peek(), board)) {
-                if (hasZeroElements()) {
-                    placeRandomNumber();
-                    undo.push(board);
-                }
-            }
-        }
+        placeNumber();
     }
     
     public void moveLeft() {      
@@ -114,14 +101,7 @@ public class Game {
                 }
             }
         }
-        if (!undo.isEmpty()) {
-            if (!Arrays.deepEquals(undo.peek(), board)) {
-                if (hasZeroElements()) {
-                    placeRandomNumber();
-                    undo.push(board);
-                }
-            }
-        }
+        placeNumber();
     }
     
     public void moveRight() {    
@@ -146,14 +126,7 @@ public class Game {
                 }
             }
         }
-        if (!undo.isEmpty()) {
-            if (!Arrays.deepEquals(undo.peek(), board)) {
-                if (hasZeroElements()) {
-                    placeRandomNumber();
-                    undo.push(board);
-                }
-            }
-        }
+        placeNumber();
     }
     
     private void createNewList (List<Integer> currentList, List<Integer> newList) {
@@ -223,5 +196,25 @@ public class Game {
         }
     }
     
+    private int[][] cloneBoard() {
+        int[][] newArray = new int[boardDimensions][boardDimensions];
+        for(int i=0; i<boardDimensions; i++) {
+            for(int j=0; j<boardDimensions; j++) {
+                newArray[i][j] = board[i][j];
+            }
+        }
+        return newArray;
+    }
     
+    private void placeNumber() {
+        if (!undo.isEmpty()) {
+            if (!Arrays.deepEquals(undo.peek(), board)) {
+                if (hasZeroElements()) {
+                    placeRandomNumber();
+                    undo.push(board);
+                    board=cloneBoard();
+                }
+            }
+        }
+    }   
 }
