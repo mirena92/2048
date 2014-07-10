@@ -1,14 +1,18 @@
 package com.hackbulgaria.corejava;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.Stack;
 
 
 public class Game {
 
     private final int boardDimensions = 4;
     private int[][] board = new int[boardDimensions][boardDimensions];
+    private Stack<int[][]> undo = new Stack<>();
+    private Stack<int[][]> redo = new Stack<>();
     
     public Game() {
         placeRandomNumber();
@@ -45,11 +49,16 @@ public class Game {
                 }
             }
         }
-        if (hasZeroElements()) {
-            placeRandomNumber();
+        if (!undo.isEmpty()) {
+            if (!Arrays.deepEquals(undo.peek(), board)) {
+                if (hasZeroElements()) {
+                    placeRandomNumber();
+                    undo.push(board);
+                }
+            }
         }
     }
-
+    
     public void moveUp() {      
         List<Integer> column = new ArrayList<>();
         List<Integer> newColumn = new ArrayList<>();
@@ -72,8 +81,13 @@ public class Game {
                 }
             }
         }
-        if (hasZeroElements()) {
-            placeRandomNumber();
+        if (!undo.isEmpty()) {
+            if (!Arrays.deepEquals(undo.peek(), board)) {
+                if (hasZeroElements()) {
+                    placeRandomNumber();
+                    undo.push(board);
+                }
+            }
         }
     }
     
@@ -99,8 +113,13 @@ public class Game {
                 }
             }
         }
-        if(hasZeroElements()) {
-            placeRandomNumber();
+        if (!undo.isEmpty()) {
+            if (!Arrays.deepEquals(undo.peek(), board)) {
+                if (hasZeroElements()) {
+                    placeRandomNumber();
+                    undo.push(board);
+                }
+            }
         }
     }
     
@@ -126,8 +145,13 @@ public class Game {
                 }
             }
         }
-        if (hasZeroElements()) {
-            placeRandomNumber();
+        if (!undo.isEmpty()) {
+            if (!Arrays.deepEquals(undo.peek(), board)) {
+                if (hasZeroElements()) {
+                    placeRandomNumber();
+                    undo.push(board);
+                }
+            }
         }
     }
     
@@ -178,7 +202,6 @@ public class Game {
         return false;
     }
     
-    
     private void placeRandomNumber() {
         int number;
         Random random = new Random();
@@ -198,7 +221,6 @@ public class Game {
             placeRandomNumber();
         }
     }
-    
     
     
 }
