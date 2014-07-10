@@ -44,12 +44,12 @@ public class Game {
                     board[x][y] = 0;
                 }
             }
-            if(hasNullElements()) {
-                placeRandomNumber();
-            }
+        }
+        if (hasZeroElements()) {
+            placeRandomNumber();
         }
     }
-    
+
     public void moveUp() {      
         List<Integer> column = new ArrayList<>();
         List<Integer> newColumn = new ArrayList<>();
@@ -71,9 +71,9 @@ public class Game {
                     board[x][y] = 0;
                 }
             }
-            if(hasNullElements()) {
-                placeRandomNumber();
-            }
+        }
+        if (hasZeroElements()) {
+            placeRandomNumber();
         }
     }
     
@@ -98,9 +98,9 @@ public class Game {
                     board[x][y] = 0;
                 }
             }
-            if(hasNullElements()) {
-                placeRandomNumber();
-            }
+        }
+        if(hasZeroElements()) {
+            placeRandomNumber();
         }
     }
     
@@ -125,9 +125,9 @@ public class Game {
                     board[x][y] = 0;
                 }
             }
-            if(hasNullElements()) {
-                placeRandomNumber();
-            }
+        }
+        if (hasZeroElements()) {
+            placeRandomNumber();
         }
     }
     
@@ -146,7 +146,7 @@ public class Game {
         }
     }
     
-    public boolean hasNullElements() {
+    public boolean hasZeroElements() {
         
         for(int i=0; i<boardDimensions; i++) {
             for(int j=0; j<boardDimensions; j++) {
@@ -159,7 +159,7 @@ public class Game {
     }
     
     public boolean isLost() {        
-        if(!hasNullElements()) {
+        if(!hasZeroElements()) {
             for(int x=0; x<boardDimensions; x++) {
                 for(int y=0; y<boardDimensions-1; y++) {
                     if(board[x][y]==board[x][y+1]) {
