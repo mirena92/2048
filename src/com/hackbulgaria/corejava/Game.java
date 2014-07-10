@@ -216,5 +216,20 @@ public class Game {
                 }
             }
         }
-    }   
+    } 
+    
+    public void undo () {
+        if(!undo.isEmpty()) {
+            redo.push(undo.pop());
+            board=undo.pop();
+        }
+    }
+    
+    public void redo () {
+        if(!redo.isEmpty()) {
+            board=redo.pop();
+            undo.push(board);
+        }
+    }
+    
 }

@@ -19,6 +19,10 @@ public class Controller {
             this.game.moveLeft();
         } else if (control.equals("d")) {
             this.game.moveRight();
+        } else if (control.equals("u")) {
+            this.game.undo();
+        } else if (control.equals("r")) {
+            this.game.redo();
         }
     }
 }
