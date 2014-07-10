@@ -8,19 +8,24 @@ public class CommandLineVisualization implements Visualization {
     @Override
     public void displayBoard() throws IOException {
         while (true) {
-            cntrl.keyTyped();
-            for (int i = 0; i < 4; i++) {
-                for (int j = 0; j < 4; j++) {
-                    System.out.print(cntrl.game.getBoard()[i][j] + "  ");
+            if (displayWinMessage()) {
+                System.out.println("You won");
+                break;
+            } else {
+                cntrl.keyTyped();
+                for (int i = 0; i < 4; i++) {
+                    for (int j = 0; j < 4; j++) {
+                        System.out.print(cntrl.game.getBoard()[i][j] + "  ");
+                    }
+                    System.out.println();
                 }
-                System.out.println();
+                cntrl.setPlayerScore();
             }
         }
     }
 
     @Override
-    public void displayWinMessage() {
-
+    public boolean displayWinMessage() {
+        return cntrl.player.isWinning();
     }
-
 }

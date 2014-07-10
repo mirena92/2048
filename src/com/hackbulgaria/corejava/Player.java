@@ -2,7 +2,7 @@ package com.hackbulgaria.corejava;
 
 public class Player {
     private int score;
-    private final int winningScore = 2048;
+    private final int winningScore = 16;
 
     public Player() {
         this.score = 0;
