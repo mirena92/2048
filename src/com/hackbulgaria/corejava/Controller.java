@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class Controller {
     public Game game = new Game();
-    private Player player = new Player();
+    public Player player = new Player();
 
     public void keyTyped() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -24,5 +24,17 @@ public class Controller {
         } else if (control.equals("r")) {
             this.game.redo();
         }
+    }
+
+    public void setPlayerScore() {
+        int max = game.getBoard()[0][0];
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                if (max < game.getBoard()[i][j]) {
+                    max = game.getBoard()[i][j];
+                }
+            }
+        }
+        player.setScore(max);
     }
 }

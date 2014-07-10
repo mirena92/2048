@@ -6,5 +6,5 @@ public interface Visualization {
 
     public void displayBoard() throws IOException;
 
-    public void displayWinMessage();
+    public boolean displayWinMessage();
 }
