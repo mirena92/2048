@@ -44,6 +44,9 @@ public class Game {
                     board[x][y] = 0;
                 }
             }
+            if(hasNullElements()) {
+                placeRandomNumber();
+            }
         }
     }
     
@@ -67,6 +70,9 @@ public class Game {
                 else {
                     board[x][y] = 0;
                 }
+            }
+            if(hasNullElements()) {
+                placeRandomNumber();
             }
         }
     }
@@ -92,6 +98,9 @@ public class Game {
                     board[x][y] = 0;
                 }
             }
+            if(hasNullElements()) {
+                placeRandomNumber();
+            }
         }
     }
     
@@ -115,6 +124,9 @@ public class Game {
                 else {
                     board[x][y] = 0;
                 }
+            }
+            if(hasNullElements()) {
+                placeRandomNumber();
             }
         }
     }
