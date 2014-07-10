@@ -17,6 +17,7 @@ public class Game {
     public Game() {
         placeRandomNumber();
         placeRandomNumber();
+        undo.push(board);
     }
     
     public int[][] getBoard() {
