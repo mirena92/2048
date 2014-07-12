@@ -23,6 +23,8 @@ public class Controller {
             this.game.undo();
         } else if (control.equals("r")) {
             this.game.redo();
+        } else if (control.equals("n")) {
+            this.game = new Game();
         }
     }
 
