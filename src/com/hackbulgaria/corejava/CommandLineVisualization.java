@@ -1,10 +1,8 @@
 package com.hackbulgaria.corejava;
 
 import java.io.IOException;
-import java.util.logging.ConsoleHandler;
 
 import jline.ConsoleReader;
-import jline.Terminal;
 
 public class CommandLineVisualization implements Visualization {
     private Controller cntrl = new Controller();
@@ -19,14 +17,18 @@ public class CommandLineVisualization implements Visualization {
                 break;
             } else {
                 cntrl.keyTyped();
+                console.clearScreen();
                 printBoard();
                 cntrl.setPlayerScore();
-                console.clearScreen(); 
-                Terminal.setupTerminal().resetTerminal();
             }
         }
     }
-    
+
+    @Override
+    public boolean displayWinMessage() {
+        return cntrl.player.isWinning();
+    }
+
     private void printBoard() {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
@@ -34,10 +36,5 @@ public class CommandLineVisualization implements Visualization {
             }
             System.out.println();
         }
-    }
-
-    @Override
-    public boolean displayWinMessage() {
-        return cntrl.player.isWinning();
     }
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Player implements Serializable {
     private int score;
-    private final int winningScore = 16;
+    private final int winningScore = 2048;
 
     public Player() {
         this.score = 0;
