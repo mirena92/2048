@@ -7,10 +7,10 @@ public class CommandLineVisualization implements Visualization {
 
     @Override
     public void displayBoard() throws IOException {
-        while (true) {
+        //while (true) {
             if (displayWinMessage()) {
                 System.out.println("You won");
-                break;
+                //break;
             } else {
                 cntrl.keyTyped();
                 for (int i = 0; i < 4; i++) {
@@ -20,7 +20,7 @@ public class CommandLineVisualization implements Visualization {
                     System.out.println();
                 }
                 cntrl.setPlayerScore();
-            }
+          //  }
         }
     }
 
