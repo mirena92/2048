@@ -18,7 +18,6 @@ public class Controller implements Serializable {
     public void keyTyped() throws IOException {
 
         x = terminal.readVirtualKey(System.in);
-        System.out.println(x);
         if (x == Keys.DOWN_ARROW.getNumber()) {
             this.game.moveDown();
         } else if (x == Keys.UP_ARROW.getNumber()) {
