@@ -1,20 +1,13 @@
 package com.hackbulgaria.corejava;
 
-import java.io.IOException;
-
-import jline.ConsoleOperations;
-import jline.ConsoleReader;
-import jline.Terminal;
-import jline.WindowsTerminal;
-
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+
+import jline.Terminal;
 
 public class Controller implements Serializable {
     public Game game = new Game();
@@ -22,38 +15,40 @@ public class Controller implements Serializable {
 
     public void keyTyped() throws IOException {
 
-        //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        //String control = br.readLine();
-        
-        Terminal terminal = Terminal.setupTerminal();            
+        // BufferedReader br = new BufferedReader(new
+        // InputStreamReader(System.in));
+        // String control = br.readLine();
+
+        Terminal terminal = Terminal.setupTerminal();
         int x = terminal.readVirtualKey(System.in);
         System.out.println(x);
         x = terminal.readCharacter(System.in);
         System.out.println(x);
 
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        String control = br.readLine();
-//        if (control.equals("s")) {
-//            this.game.moveDown();
-//        } else if (control.equals("w")) {
-//            this.game.moveUp();
-//        } else if (control.equals("a")) {
-//            this.game.moveLeft();
-//        } else if (control.equals("d")) {
-//            this.game.moveRight();
-//        } else if (control.equals("u")) {
-//            this.game.undo();
-//        } else if (control.equals("r")) {
-//            this.game.redo();
-//        } else if (control.equals("n")) {
-//            this.game = new Game();
-//        } else if (control.equals("q")) {
-//            System.exit(0);
-//        } else if (control.equals("k")) {
-//            save();
-//        } else if (control.equals("l")) {
-//            load();
-//        }
+        // BufferedReader br = new BufferedReader(new
+        // InputStreamReader(System.in));
+        // String control = br.readLine();
+        // if (control.equals("s")) {
+        // this.game.moveDown();
+        // } else if (control.equals("w")) {
+        // this.game.moveUp();
+        // } else if (control.equals("a")) {
+        // this.game.moveLeft();
+        // } else if (control.equals("d")) {
+        // this.game.moveRight();
+        // } else if (control.equals("u")) {
+        // this.game.undo();
+        // } else if (control.equals("r")) {
+        // this.game.redo();
+        // } else if (control.equals("n")) {
+        // this.game = new Game();
+        // } else if (control.equals("q")) {
+        // System.exit(0);
+        // } else if (control.equals("k")) {
+        // save();
+        // } else if (control.equals("l")) {
+        // load();
+        // }
     }
 
     public void load() {
