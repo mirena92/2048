@@ -41,7 +41,6 @@ public class Controller implements Serializable {
 
     public void load() {
         try {
-            // game.undo.push(game.getBoard());
             FileInputStream fileIn = new FileInputStream("/home/emilian/tmp/game.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Controller newController = (Controller) in.readObject();
