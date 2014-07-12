@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 public class GUI extends JFrame implements Visualization {
     private Controller cntrl = new Controller();
@@ -31,6 +32,7 @@ public class GUI extends JFrame implements Visualization {
         this.setSize(WIDTH, HEIGHT);
         this.setLocationRelativeTo(null);
         this.setLayout(gridLayout);
+       
         printBoard();
     }
 
@@ -41,76 +43,20 @@ public class GUI extends JFrame implements Visualization {
     }
 
     private void printBoard() {
-        JLabel label = new JLabel();
-        String currentImage;
-        // for (int i = 0; i < 4; i++) {
-        // for (int j = 0; j < 4; j++) {
-        // currentImage = mapImages.get(cntrl.game.getBoard()[i][j]);
-        // currentImage = mapImages.get(2);
-        // label.setIcon(new ImageIcon(currentImage));
-        // this.add(label);
-        // this.add(label);
-        // currentImage = mapImages.get(8);
-        // label.setIcon(new ImageIcon(currentImage));
-        // this.add(label);
-        // this.add(label);
-        // this.add(label);
-        // this.add`
-        // }
-
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-        add(crateLabel());
-
-    }
-
-    private JLabel crateLabel() {
-        try {
-            extracted();
-            // ImageIcon icon = new
-            // ImageIcon("C:\\Users\\RUSHI\\Desktop\\dog.jpg");
-            JLabel label = new JLabel("dadadadada");
-            return label;
-        } catch (IOException e) {
-            // // TODO Auto-generated catch block
-            e.printStackTrace();
-            throw new RuntimeException(e);
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                add(createLabel(i, j));
+            }
         }
     }
 
-    private static void extracted() throws IOException {
-        BufferedImage image = ImageIO.read(new File("C:\\Users\\RUSHI\\Desktop\\dog.jpg"));
+    private JLabel createLabel(int x, int y) {
+        ImageIcon icon = new ImageIcon(mapImages.get(cntrl.game.getBoard()[x][y]));
+        JLabel label = new JLabel(icon);
+        return label;
     }
 
     private void initializeMap() throws IOException {
-        // File parent = new
-        // File("C:\\Users\\RUSHI\\Desktop\\coreJava\\2048\\images\\");
-        // mapImages.put(0, ImageIO.read(new File(parent, "empty.png")));
-        // mapImages.put(2, ImageIO.read(new File(parent, "2.png")));
-        // mapImages.put(4, ImageIO.read(new File(parent, "4.png")));
-        // mapImages.put(8, ImageIO.read(new File(parent, "8.png")));
-        // mapImages.put(16, ImageIO.read(new File(parent, "16.png")));
-        // mapImages.put(32, ImageIO.read(new File(parent, "32.png")));
-        // mapImages.put(64, ImageIO.read(new File(parent, "64.png")));
-        // mapImages.put(128, ImageIO.read(new File(parent, "128.png")));
-        // mapImages.put(256, ImageIO.read(new File(parent, "256.png")));
-        // mapImages.put(512, ImageIO.read(new File(parent, "512.png")));
-        // mapImages.put(1024, ImageIO.read(new File(parent, "1024.png")));
-        // mapImages.put(2048, ImageIO.read(new File(parent, "2048.png")));
-
         String parent = "C:\\Users\\RUSHI\\Desktop\\coreJava\\2048\\images\\";
         mapImages.put(0, String.format("%s%s", parent, "empty.png"));
         mapImages.put(2, String.format("%s%s", parent, "2.png"));
