@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        CommandLineVisualization cli = new CommandLineVisualization();
+        Visualization cli = new GUI();
         cli.displayBoard();
     }
 }
