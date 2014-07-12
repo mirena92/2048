@@ -19,41 +19,34 @@ import java.io.Serializable;
 public class Controller implements Serializable {
     public Game game = new Game();
     public Player player = new Player();
+    private Terminal terminal = Terminal.setupTerminal();  
+    private int x;
 
     public void keyTyped() throws IOException {
+              
+        x = terminal.readVirtualKey(System.in);
 
-        //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        //String control = br.readLine();
-        
-        Terminal terminal = Terminal.setupTerminal();            
-        int x = terminal.readVirtualKey(System.in);
-        System.out.println(x);
-        x = terminal.readCharacter(System.in);
-        System.out.println(x);
-
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        String control = br.readLine();
-//        if (control.equals("s")) {
-//            this.game.moveDown();
-//        } else if (control.equals("w")) {
-//            this.game.moveUp();
-//        } else if (control.equals("a")) {
-//            this.game.moveLeft();
-//        } else if (control.equals("d")) {
-//            this.game.moveRight();
-//        } else if (control.equals("u")) {
-//            this.game.undo();
-//        } else if (control.equals("r")) {
-//            this.game.redo();
-//        } else if (control.equals("n")) {
-//            this.game = new Game();
-//        } else if (control.equals("q")) {
-//            System.exit(0);
-//        } else if (control.equals("k")) {
-//            save();
-//        } else if (control.equals("l")) {
-//            load();
-//        }
+        if (x==Keys.DOWN_ARROW.getNumber()) {
+            this.game.moveDown();
+        } else if (x==Keys.UP_ARROW.getNumber()) {
+            this.game.moveUp();
+        } else if (x==Keys.LEFT_ARROW.getNumber()) {
+            this.game.moveLeft();
+        } else if (x==Keys.RIGHT_ARROW.getNumber()) {
+            this.game.moveRight();
+        } else if (x==Keys.U.getNumber()) {
+            this.game.undo();
+        } else if (x==Keys.R.getNumber()) {
+            this.game.redo();
+        } else if (x==Keys.N.getNumber()) {
+            this.game = new Game();
+        } else if (x==Keys.Q.getNumber()) {
+            System.exit(0);
+        } else if (x==Keys.S.getNumber()) {
+            save();
+        } else if (x==Keys.L.getNumber()) {
+            load();
+        }
     }
 
     public void load() {
