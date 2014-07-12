@@ -12,12 +12,13 @@ import jline.Terminal;
 public class Controller implements Serializable {
     public Game game = new Game();
     public Player player = new Player();
-    private Terminal terminal = Terminal.setupTerminal();
+    private transient Terminal terminal = Terminal.setupTerminal();
     private int x;
 
     public void keyTyped() throws IOException {
 
         x = terminal.readVirtualKey(System.in);
+        System.out.println(x);
         if (x == Keys.DOWN_ARROW.getNumber()) {
             this.game.moveDown();
         } else if (x == Keys.UP_ARROW.getNumber()) {

@@ -15,13 +15,22 @@ public class CommandLineVisualization implements Visualization {
             if (displayWinMessage()) {
                 System.out.println("You won");
                 break;
+            } else if (displayLoseMessage()) {
+                System.out.println("You Lose");
+                break;
             } else {
+
                 cntrl.keyTyped();
                 console.clearScreen();
                 printBoard();
                 cntrl.setPlayerScore();
             }
         }
+    }
+
+    @Override
+    public boolean displayLoseMessage() {
+        return cntrl.game.isLost();
     }
 
     @Override

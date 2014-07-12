@@ -62,7 +62,9 @@ public class Game implements Serializable {
     }
 
     public boolean isLost() {
-        if (!hasZeroElements()) {
+        if (hasZeroElements()) {
+            return false;
+        } else {
             for (int x = 0; x < boardDimensions; x++) {
                 for (int y = 0; y < boardDimensions - 1; y++) {
                     if (board[x][y] == board[x][y + 1]) {
@@ -78,7 +80,7 @@ public class Game implements Serializable {
                 }
             }
         }
-        return false;
+        return true;
     }
 
     public void moveDown() {
