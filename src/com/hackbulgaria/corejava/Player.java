@@ -1,6 +1,8 @@
 package com.hackbulgaria.corejava;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private int score;
     private final int winningScore = 16;
 

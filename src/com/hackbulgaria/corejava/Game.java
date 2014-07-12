@@ -1,12 +1,13 @@
 package com.hackbulgaria.corejava;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Stack;
 
-public class Game {
+public class Game implements Serializable {
 
     private final int boardDimensions = 4;
     private int[][] board = new int[boardDimensions][boardDimensions];
@@ -219,7 +220,7 @@ public class Game {
 
     public void undo() {
         if (!undo.isEmpty() && undo.size() > 1) {
-            redo.push(undo.pop());
+            redo.push(undo.get(undo.size() - 1));
             board = undo.pop();
         }
     }
