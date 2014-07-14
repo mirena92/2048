@@ -17,15 +17,23 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 
 public class GUI extends JFrame implements Visualization {
+    private final static Map<Integer, String> mapImages = new HashMap<>();
+    static {
+        try {
+            initializeMap();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private Controller cntrl = new Controller();
-    Map<Integer, String> mapImages = new HashMap<>();
     GridLayout gridLayout = new GridLayout(4, 4);
     private final int WIDTH = 400;
     private final int HEIGHT = 400;
 
     @Override
     public void displayBoard() throws IOException {
-        initializeMap();
+       
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationByPlatform(true);
         this.setVisible(true);
@@ -33,6 +41,8 @@ public class GUI extends JFrame implements Visualization {
         this.setLocationRelativeTo(null);
         this.setLayout(gridLayout);
        
+        printBoard();
+        
         printBoard();
     }
 
@@ -56,7 +66,7 @@ public class GUI extends JFrame implements Visualization {
         return label;
     }
 
-    private void initializeMap() throws IOException {
+    private static void initializeMap() throws IOException {
         String parent = "C:\\Users\\RUSHI\\Desktop\\coreJava\\2048\\images\\";
         mapImages.put(0, String.format("%s%s", parent, "empty.png"));
         mapImages.put(2, String.format("%s%s", parent, "2.png"));
