@@ -1,6 +1,5 @@
 package com.hackbulgaria.corejava;
 
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,14 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 
 public class GUI extends JFrame implements Visualization {
+
     private final static Map<Integer, String> mapImages = new HashMap<>();
     static {
         try {
@@ -26,10 +23,35 @@ public class GUI extends JFrame implements Visualization {
         }
     }
 
+    private static void extracted() throws IOException {
+        BufferedImage image = ImageIO.read(new File("/home/emilian/Pictures/danger-doom.jpg"));
+    }
+
     private Controller cntrl = new Controller();
     GridLayout gridLayout = new GridLayout(4, 4);
     private final int WIDTH = 400;
+
     private final int HEIGHT = 400;
+
+    private JLabel crateLabel() {
+        try {
+            extracted();
+            // ImageIcon icon = new
+            // ImageIcon("C:\\Users\\RUSHI\\Desktop\\dog.jpg");
+            JLabel label = new JLabel("dadadadada");
+            return label;
+        } catch (IOException e) {
+            // // TODO Auto-generated catch block
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
+
+    private JLabel createLabel(int x, int y) {
+        ImageIcon icon = new ImageIcon(mapImages.get(cntrl.game.getBoard()[x][y]));
+        JLabel label = new JLabel(icon);
+        return label;
+    }
 
     @Override
     public void displayBoard() throws IOException {
@@ -40,30 +62,20 @@ public class GUI extends JFrame implements Visualization {
         this.setSize(WIDTH, HEIGHT);
         this.setLocationRelativeTo(null);
         this.setLayout(gridLayout);
-       
+
         printBoard();
-        
-        printBoard();
+    }
+
+    @Override
+    public boolean displayLoseMessage() {
+        // TODO Auto-generated method stub
+        return false;
     }
 
     @Override
     public boolean displayWinMessage() {
         // TODO Auto-generated method stub
         return false;
-    }
-
-    private void printBoard() {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                add(createLabel(i, j));
-            }
-        }
-    }
-
-    private JLabel createLabel(int x, int y) {
-        ImageIcon icon = new ImageIcon(mapImages.get(cntrl.game.getBoard()[x][y]));
-        JLabel label = new JLabel(icon);
-        return label;
     }
 
     private static void initializeMap() throws IOException {
@@ -83,10 +95,11 @@ public class GUI extends JFrame implements Visualization {
 
     }
 
-    @Override
-    public boolean displayLoseMessage() {
-        // TODO Auto-generated method stub
-        return false;
+    private void printBoard() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 4; j++) {
+                add(createLabel(i, j));
+            }
+       }
     }
-
 }
