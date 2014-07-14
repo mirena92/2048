@@ -9,6 +9,7 @@ import java.util.Stack;
 
 public class Game implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private final int boardDimensions = 4;
     private int[][] board = new int[boardDimensions][boardDimensions];
     private Stack<int[][]> undo = new Stack<>();

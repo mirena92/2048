@@ -10,6 +10,8 @@ import java.io.Serializable;
 import jline.Terminal;
 
 public class Controller implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     public Game game = new Game();
     public Player player = new Player();
     private transient Terminal terminal = Terminal.setupTerminal();
@@ -40,6 +42,19 @@ public class Controller implements Serializable {
             load();
         }
     }
+    
+    public void keyTypedGUI(int keyType) {    
+        if (keyType == Keys.DOWN_ARROW.getNumber()) {
+            this.game.moveDown();
+        } else if (keyType == Keys.UP_ARROW.getNumber()) {
+            this.game.moveUp();
+        } else if (keyType == Keys.LEFT_ARROW.getNumber()) {
+            this.game.moveLeft();
+        } else if (keyType == Keys.RIGHT_ARROW.getNumber()) {
+            this.game.moveRight();
+        }
+    }
+    
 
     public void load() {
         try {

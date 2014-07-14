@@ -1,19 +1,18 @@
 package com.hackbulgaria.corejava;
 
 import java.awt.GridLayout;
-import java.awt.image.BufferedImage;
-import java.io.File;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class GUI extends JFrame implements Visualization {
 
+    private static final long serialVersionUID = 1L;
     private final static Map<Integer, String> mapImages = new HashMap<>();
     static {
         try {
@@ -23,29 +22,11 @@ public class GUI extends JFrame implements Visualization {
         }
     }
 
-    private static void extracted() throws IOException {
-        BufferedImage image = ImageIO.read(new File("/home/emilian/Pictures/danger-doom.jpg"));
-    }
-
     private Controller cntrl = new Controller();
     GridLayout gridLayout = new GridLayout(4, 4);
     private final int WIDTH = 400;
-
     private final int HEIGHT = 400;
 
-    private JLabel crateLabel() {
-        try {
-            extracted();
-            // ImageIcon icon = new
-            // ImageIcon("C:\\Users\\RUSHI\\Desktop\\dog.jpg");
-            JLabel label = new JLabel("dadadadada");
-            return label;
-        } catch (IOException e) {
-            // // TODO Auto-generated catch block
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
 
     private JLabel createLabel(int x, int y) {
         ImageIcon icon = new ImageIcon(mapImages.get(cntrl.game.getBoard()[x][y]));
@@ -62,8 +43,19 @@ public class GUI extends JFrame implements Visualization {
         this.setSize(WIDTH, HEIGHT);
         this.setLocationRelativeTo(null);
         this.setLayout(gridLayout);
-
+        KeyListener keyListener = new KeyListener();
+        this.addKeyListener(keyListener);
+       
         printBoard();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        getContentPane().removeAll();
+        
     }
 
     @Override
@@ -92,14 +84,52 @@ public class GUI extends JFrame implements Visualization {
         mapImages.put(512, String.format("%s%s", parent, "512.png"));
         mapImages.put(1024, String.format("%s%s", parent, "1024.png"));
         mapImages.put(2048, String.format("%s%s", parent, "2048.png"));
-
     }
 
     private void printBoard() {
+
+        getContentPane().removeAll();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 add(createLabel(i, j));
             }
        }
+    }
+    
+    public class KeyListener implements java.awt.event.KeyListener {
+
+        public int keyType;
+        
+        @Override
+        public void keyTyped(KeyEvent e) {     
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+//            if (e.getExtendedKeyCode() == KeyEvent.VK_DOWN) {
+//                keyType = Keys.DOWN_ARROW.getNumber();
+//            } else if (e.getExtendedKeyCode() == KeyEvent.VK_UP) {
+//                keyType = Keys.UP_ARROW.getNumber();
+//            } else if (e.getExtendedKeyCode() == KeyEvent.VK_LEFT) {
+//                keyType = Keys.LEFT_ARROW.getNumber();
+//            } else if (e.getExtendedKeyCode() == KeyEvent.VK_RIGHT) {
+//                keyType = Keys.RIGHT_ARROW.getNumber();
+//            } else if (e.getExtendedKeyCode() == KeyEvent.VK_N) {
+//                keyType = Keys.N.getNumber();
+//            }
+//            cntrl.keyTypedGUI(keyType);
+//            printBoard();     
+            
+            if (e.getExtendedKeyCode() == KeyEvent.VK_N) {
+                printBoard();
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            if (e.getExtendedKeyCode() == KeyEvent.VK_N) {
+                printBoard();
+            }
+        }
     }
 }
