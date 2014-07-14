@@ -7,51 +7,34 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-import jline.Terminal;
-
 public class Controller implements Serializable {
 
     private static final long serialVersionUID = 1L;
     public Game game = new Game();
     public Player player = new Player();
-    private transient Terminal terminal = Terminal.setupTerminal();
-    private int x;
 
-    public void keyTyped() throws IOException {
-
-        x = terminal.readVirtualKey(System.in);
-        if (x == Keys.DOWN_ARROW.getNumber()) {
-            this.game.moveDown();
-        } else if (x == Keys.UP_ARROW.getNumber()) {
-            this.game.moveUp();
-        } else if (x == Keys.LEFT_ARROW.getNumber()) {
-            this.game.moveLeft();
-        } else if (x == Keys.RIGHT_ARROW.getNumber()) {
-            this.game.moveRight();
-        } else if (x == Keys.U.getNumber()) {
-            this.game.undo();
-        } else if (x == Keys.R.getNumber()) {
-            this.game.redo();
-        } else if (x == Keys.N.getNumber()) {
-            this.game = new Game();
-        } else if (x == Keys.Q.getNumber()) {
-            System.exit(0);
-        } else if (x == Keys.S.getNumber()) {
-            save();
-        } else if (x == Keys.L.getNumber()) {
-            load();
-        }
-    }
-    
-    public void keyTypedGUI(int keyType) {    
+    public void keyTyped(int keyType) throws IOException {       
+        
         if (keyType == Keys.DOWN_ARROW.getNumber()) {
-            this.game.moveDown();
+            game.moveDown();
         } else if (keyType == Keys.UP_ARROW.getNumber()) {
-            this.game.moveUp();
+            game.moveUp();
         } else if (keyType == Keys.LEFT_ARROW.getNumber()) {
-            this.game.moveLeft();
+            game.moveLeft();
         } else if (keyType == Keys.RIGHT_ARROW.getNumber()) {
-            this.game.moveRight();
+            game.moveRight();
+        } else if (keyType == Keys.U.getNumber()) {
+            game.undo();
+        } else if (keyType == Keys.R.getNumber()) {
+            game.redo();
+        } else if (keyType == Keys.N.getNumber()) {
+            game = new Game();
+        } else if (keyType == Keys.Q.getNumber()) {
+            System.exit(0);
+        } else if (keyType == Keys.S.getNumber()) {
+            save();
+        } else if (keyType == Keys.L.getNumber()) {
+            load();
         }
     }
 

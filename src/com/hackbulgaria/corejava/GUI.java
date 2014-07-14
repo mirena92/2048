@@ -1,12 +1,8 @@
 package com.hackbulgaria.corejava;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +10,6 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 public class GUI extends JFrame implements Visualization {
 
@@ -27,7 +22,6 @@ public class GUI extends JFrame implements Visualization {
             e.printStackTrace();
         }
     }
-
     private Controller cntrl = new Controller();
     GridLayout gridLayout = new GridLayout(4, 4);
     private final int WIDTH = 400;
@@ -56,13 +50,11 @@ public class GUI extends JFrame implements Visualization {
 
     @Override
     public boolean displayLoseMessage() {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
-    public boolean displayWinMessage() {
-        // TODO Auto-generated method stub
+    public boolean displayWinMessage() { 
         return false;
     }
 
@@ -71,34 +63,54 @@ public class GUI extends JFrame implements Visualization {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 add(createLabel(i, j));
-                System.out.print(cntrl.game.getBoard()[i][j] + "  ");
             }
-            System.out.println();
        }
-        System.out.println();
     }
     
-//    public class MyKeyListener implements KeyListener {
-        public class MyKeyListener extends KeyAdapter {        
-
+    public class MyKeyListener extends KeyAdapter {
         public int keyType;
 
         @Override
         public void keyPressed(KeyEvent e) {
-            super.keyPressed(e);
-            System.out.println("In keyPressed");
-            if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-                keyType = Keys.DOWN_ARROW.getNumber();
-            } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-                keyType = Keys.UP_ARROW.getNumber();
-            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-                keyType = Keys.LEFT_ARROW.getNumber();
-            } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-                keyType = Keys.RIGHT_ARROW.getNumber();
-            } else if (e.getKeyCode() == KeyEvent.VK_N) {
-                keyType = Keys.N.getNumber();
+            super.keyPressed(e);            
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_DOWN:
+                    keyType = Keys.DOWN_ARROW.getNumber();
+                    break;
+                case KeyEvent.VK_UP:
+                    keyType = Keys.UP_ARROW.getNumber();
+                    break;
+                case KeyEvent.VK_LEFT:
+                    keyType = Keys.LEFT_ARROW.getNumber();
+                    break;
+                case KeyEvent.VK_RIGHT:
+                    keyType = Keys.RIGHT_ARROW.getNumber();
+                    break;
+                case KeyEvent.VK_N:
+                    keyType = Keys.N.getNumber();
+                    break;
+                case KeyEvent.VK_S:
+                    keyType = Keys.S.getNumber();
+                    break;
+                case KeyEvent.VK_U:
+                    keyType = Keys.U.getNumber();
+                    break;
+                case KeyEvent.VK_R:
+                    keyType = Keys.R.getNumber();
+                    break;
+                case KeyEvent.VK_Q:
+                    keyType = Keys.Q.getNumber();
+                    break;
+                case KeyEvent.VK_L:
+                    keyType = Keys.L.getNumber();
+                    break;
             }
-            cntrl.keyTypedGUI(keyType);
+            
+            try {
+                cntrl.keyTyped(keyType);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             printBoard();     
         }
     }     

@@ -3,9 +3,12 @@ package com.hackbulgaria.corejava;
 import java.io.IOException;
 
 import jline.ConsoleReader;
+import jline.Terminal;
 
 public class CommandLineVisualization implements Visualization {
     private Controller cntrl = new Controller();
+    private transient Terminal terminal = Terminal.setupTerminal();
+    private int keyType;
 
     @Override
     public void displayBoard() throws IOException {
@@ -19,8 +22,8 @@ public class CommandLineVisualization implements Visualization {
                 System.out.println("You Lose");
                 break;
             } else {
-
-                cntrl.keyTyped();
+                keyType = terminal.readVirtualKey(System.in);
+                cntrl.keyTyped(keyType);
                 console.clearScreen();
                 printBoard();
                 cntrl.setPlayerScore();
