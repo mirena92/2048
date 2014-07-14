@@ -54,7 +54,6 @@ public class Controller implements Serializable {
             this.game.moveRight();
         }
     }
-    
 
     public void load() {
         try {
