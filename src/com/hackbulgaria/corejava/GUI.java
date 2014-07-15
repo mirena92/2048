@@ -1,6 +1,9 @@
 package com.hackbulgaria.corejava;
 
+import java.awt.AWTEvent;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -10,6 +13,7 @@ import java.util.Map;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 public class GUI extends JFrame implements Visualization {
 
@@ -27,7 +31,6 @@ public class GUI extends JFrame implements Visualization {
     private final int WIDTH = 400;
     private final int HEIGHT = 400;
 
-    
     private JLabel createLabel(int x, int y) {
         ImageIcon icon = new ImageIcon(mapImages.get(cntrl.game.getBoard()[x][y]));
         JLabel label = new JLabel(icon);
@@ -35,16 +38,16 @@ public class GUI extends JFrame implements Visualization {
     }
 
     @Override
-    public void displayBoard() throws IOException { 
-        
+    public void displayBoard() throws IOException {
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationByPlatform(true);
         this.setVisible(true);
         this.setSize(WIDTH, HEIGHT);
         this.setLocationRelativeTo(null);
         this.setLayout(gridLayout);
-        
-        this.addKeyListener(new MyKeyListener());        
+
+        this.addKeyListener(new MyKeyListener());
         printBoard();
     }
 
@@ -54,7 +57,7 @@ public class GUI extends JFrame implements Visualization {
     }
 
     @Override
-    public boolean displayWinMessage() { 
+    public boolean displayWinMessage() {
         return false;
     }
 
@@ -64,15 +67,27 @@ public class GUI extends JFrame implements Visualization {
             for (int j = 0; j < 4; j++) {
                 add(createLabel(i, j));
             }
-       }
+        }
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                // TODO Auto-generated method stub
+                // getContentPane().repaint();
+                repaint();
+                setVisible(true);
+                // getContentPane().dr
+
+            }
+        });
     }
-    
+
     public class MyKeyListener extends KeyAdapter {
         public int keyType;
 
         @Override
         public void keyPressed(KeyEvent e) {
-            super.keyPressed(e);            
+            super.keyPressed(e);
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_DOWN:
                     keyType = Keys.DOWN_ARROW.getNumber();
@@ -105,16 +120,13 @@ public class GUI extends JFrame implements Visualization {
                     keyType = Keys.L.getNumber();
                     break;
             }
-            
-            try {
-                cntrl.keyTyped(keyType);
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            }
-            printBoard();     
+
+            cntrl.keyTyped(keyType);
+
+            printBoard();
         }
-    }     
-    
+    }
+
     private static void initializeMap() throws IOException {
         String parent = "C:\\Users\\RUSHI\\Desktop\\coreJava\\2048\\images\\";
         mapImages.put(0, String.format("%s%s", parent, "empty.png"));

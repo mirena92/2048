@@ -1,6 +1,5 @@
 package com.hackbulgaria.corejava;
 
-//import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import javax.swing.SwingUtilities;
@@ -16,11 +15,9 @@ public class Main {
                 try {
                     gui.displayBoard();
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
         });
-
     }
 }

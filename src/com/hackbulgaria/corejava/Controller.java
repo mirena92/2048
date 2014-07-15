@@ -13,7 +13,7 @@ public class Controller implements Serializable {
     public Game game = new Game();
     public Player player = new Player();
 
-    public void keyTyped(int keyType) throws IOException {       
+    public void keyTyped(int keyType) {       
         
         if (keyType == Keys.DOWN_ARROW.getNumber()) {
             game.moveDown();
@@ -36,6 +36,8 @@ public class Controller implements Serializable {
         } else if (keyType == Keys.L.getNumber()) {
             load();
         }
+        
+        
     }
 
     public void load() {
