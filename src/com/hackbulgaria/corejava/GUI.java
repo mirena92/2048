@@ -12,6 +12,7 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -201,6 +202,23 @@ public class GUI extends JFrame implements Visualization {
         edit.add(undo);
         edit.add(redo);
         menubar.add(edit);
+        
+        JMenu help = new JMenu("Help");
+        
+        JMenuItem about = new JMenuItem("About...");
+        about.setFocusable(true);
+        about.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                    JDialog f = new AboutDialog(new JFrame());
+                    f.setLocationRelativeTo(null);
+                    f.show();
+            }
+        });
+        
+        help.add(about);
+        menubar.add(help);
+        
         setJMenuBar(menubar);
     }
     
