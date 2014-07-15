@@ -42,7 +42,7 @@ public class Controller implements Serializable {
 
     public void load() {
         try {
-            FileInputStream fileIn = new FileInputStream("/home/emilian/tmp/game.ser");
+            FileInputStream fileIn = new FileInputStream("C:\\Users\\RUSHI\\Desktop\\game.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Controller newController = (Controller) in.readObject();
             game.setBoard(newController.game.getBoard());
@@ -60,7 +60,7 @@ public class Controller implements Serializable {
 
     public void save() {
         try {
-            FileOutputStream fileOut = new FileOutputStream("/home/emilian/tmp/game.ser");
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\RUSHI\\Desktop\\game.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             out.close();
