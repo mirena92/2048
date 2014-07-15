@@ -35,7 +35,7 @@ public class Game implements Serializable {
     private void createNewList(List<Integer> currentList, List<Integer> newList) {
         if (!currentList.isEmpty()) {
             for (int i = 0; i < currentList.size(); i++) {
-                if (i < currentList.size() - 1 && currentList.get(i) == currentList.get(i + 1)) {
+                if (i < currentList.size() - 1 && currentList.get(i).equals(currentList.get(i + 1))) {
                     newList.add(currentList.get(i) * 2);
                     currentList.remove(i + 1);
                     currentList.add(0);

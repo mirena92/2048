@@ -66,8 +66,11 @@ public class GUI extends JFrame implements Visualization {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 add(createLabel(i, j));
+                System.out.print(cntrl.game.getBoard()[i][j] + "  ");
             }
+            System.out.println();
         }
+        System.out.println();
         SwingUtilities.invokeLater(new Runnable() {
 
             @Override
