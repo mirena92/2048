@@ -188,7 +188,14 @@ public class Game implements Serializable {
                     undo.push(board);
                     board = cloneBoard();
                 }
+                else if (!hasZeroElements() && !isLost()) {
+                    undo.push(board);
+                    board = cloneBoard();
+                }
             }
+        }
+        else {
+            placeRandomNumber();
         }
     }
 
@@ -223,8 +230,8 @@ public class Game implements Serializable {
 
     public void undo() {
         if (!undo.isEmpty() && undo.size() > 1) {
-            redo.push(undo.get(undo.size() - 1));
-            board = undo.pop();
+            redo.push(undo.pop());
+            board = undo.get(undo.size() - 1);
         }
     }
 

@@ -1,6 +1,7 @@
 package com.hackbulgaria.corejava;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -25,21 +26,23 @@ public class AboutDialog extends JDialog{
             e.printStackTrace();
         }
         b.add(Box.createGlue());
-        b.add(new JLabel("Course Core Java in Hack Bulgaria"));
-        b.add(new JLabel("Web-site: https://hackbulgaria.com/"));
-        b.add(new JLabel("Facebook: https://www.facebook.com/HackBulgaria"));
+        b.add(new JLabel(new ImageIcon(getClass().getResource("/HackBulgariaIcon.png").getPath().toString())));
         b.add(new JLabel(" "));
-        b.add(new JLabel("Lecturer: Georgi Pachov"));
-        b.add(new JLabel("Email: georgi.patchov@gmail.com"));
+        b.add(new JLabel(" Course Core Java in Hack Bulgaria"));
+        b.add(new JLabel(" Web-site: https://hackbulgaria.com/"));
+        b.add(new JLabel(" Facebook: https://www.facebook.com/HackBulgaria"));
+        b.add(new JLabel(" "));
+        b.add(new JLabel(" Lecturer: Georgi Pachov"));
+        b.add(new JLabel(" Email: georgi.patchov@gmail.com"));
         b.add(new JLabel(" "));
         b.add(new JLabel(" "));
-        b.add(new JLabel("Developers:"));
+        b.add(new JLabel(" Developers:"));
         b.add(new JLabel(" "));
-        b.add(new JLabel("  Emilian Stankov, Sofia University"));
-        b.add(new JLabel("  Email: ---"));
+        b.add(new JLabel("   Emilian Stankov, Sofia University"));
+        b.add(new JLabel("   Email: eminstine@abv.bg"));
         b.add(new JLabel(" "));
-        b.add(new JLabel("  Mirena Kermilska, Technical University of Sofia"));
-        b.add(new JLabel("  Email: mirena.k@abv.bg"));
+        b.add(new JLabel("   Mirena Kermilska, Technical University of Sofia"));
+        b.add(new JLabel("   Email: mirena.k@abv.bg"));
         b.add(Box.createGlue());
         getContentPane().add(b, "Center");
 
@@ -54,6 +57,6 @@ public class AboutDialog extends JDialog{
           }
         });
 
-        setSize(350, 350);
+        setSize(415, 450);
       }
 }

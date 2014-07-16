@@ -96,9 +96,12 @@ public class GUI extends JFrame implements Visualization {
         public void keyPressed(KeyEvent e) {
 
             if (displayWinMessage()) {
-                JOptionPane.showMessageDialog(getParent(), "You win!!!");
+                JOptionPane.showMessageDialog(getParent(), "You win!!!", "Congratulations!", 
+                        JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("/winIcon.png").getPath().toString()));
             } else if (displayLoseMessage()) {
-                JOptionPane.showMessageDialog(getParent(), "You lose!!!");
+                
+                JOptionPane.showMessageDialog(getParent(), "You lose, try again!", "Sorry!", 
+                        JOptionPane.INFORMATION_MESSAGE, new ImageIcon(getClass().getResource("/loseIcon.png").getPath().toString()));
             } else {
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_DOWN:
