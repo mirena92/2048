@@ -1,4 +1,9 @@
 package com.hackbulgaria.corejava;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -8,11 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.IOException;
-
-public class AboutDialog extends JDialog{
+public class AboutDialog extends JDialog {
 
     private static final long serialVersionUID = 1L;
 
@@ -21,12 +22,12 @@ public class AboutDialog extends JDialog{
 
         Box b = Box.createVerticalBox();
         try {
-            setIconImage(ImageIO.read(getClass().getResource("/question.png")));
+            setIconImage(ImageIO.read(getClass().getResourceAsStream("/question.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
         b.add(Box.createGlue());
-        b.add(new JLabel(new ImageIcon(getClass().getResource("/HackBulgariaIcon.png").getPath().toString())));
+        b.add(new JLabel(new ImageIcon(getClass().getResourceAsStream("/HackBulgariaIcon.png").toString())));
         b.add(new JLabel(" "));
         b.add(new JLabel(" Course Core Java in Hack Bulgaria"));
         b.add(new JLabel(" Web-site: https://hackbulgaria.com/"));
@@ -52,11 +53,12 @@ public class AboutDialog extends JDialog{
         getContentPane().add(p2, "South");
 
         ok.addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent evt) {
-            setVisible(false);
-          }
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                setVisible(false);
+            }
         });
 
         setSize(415, 450);
-      }
+    }
 }

@@ -13,8 +13,8 @@ public class Controller implements Serializable {
     public Game game = new Game();
     public Player player = new Player();
 
-    public void keyTyped(int keyType) {       
-        
+    public void keyTyped(int keyType) {
+
         if (keyType == Keys.DOWN_ARROW.getNumber()) {
             game.moveDown();
         } else if (keyType == Keys.UP_ARROW.getNumber()) {
@@ -36,13 +36,12 @@ public class Controller implements Serializable {
         } else if (keyType == Keys.L.getNumber()) {
             load();
         }
-        
-        
+
     }
 
     public void load() {
         try {
-            FileInputStream fileIn = new FileInputStream("C:\\Users\\RUSHI\\Desktop\\game.ser");
+            FileInputStream fileIn = new FileInputStream("/home/emilian/tmp/game.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Controller newController = (Controller) in.readObject();
             game.setBoard(newController.game.getBoard());
@@ -60,7 +59,7 @@ public class Controller implements Serializable {
 
     public void save() {
         try {
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\RUSHI\\Desktop\\game.ser");
+            FileOutputStream fileOut = new FileOutputStream("/home/emilian/tmp/game.ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             out.close();
