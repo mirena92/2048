@@ -206,7 +206,16 @@ public class GUI extends JFrame implements Visualization {
         about.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                JDialog f = new AboutDialog(new JFrame());
+                JDialog f = null;
+                try {
+                    f = new AboutDialog(new JFrame());
+                } catch (HeadlessException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
                 f.setLocationRelativeTo(null);
                 f.setVisible(true);
             }

@@ -17,7 +17,7 @@ public class AboutDialog extends JDialog {
 
     private static final long serialVersionUID = 1L;
 
-    public AboutDialog(JFrame parent) {
+    public AboutDialog(JFrame parent) throws IOException {
         super(parent, "About...", true);
 
         Box b = Box.createVerticalBox();
@@ -27,7 +27,7 @@ public class AboutDialog extends JDialog {
             e.printStackTrace();
         }
         b.add(Box.createGlue());
-        b.add(new JLabel(new ImageIcon(getClass().getResourceAsStream("/HackBulgariaIcon.png").toString())));
+        b.add(new JLabel(new ImageIcon(ImageIO.read(getClass().getResourceAsStream("/HackBulgariaIcon.png")))));
         b.add(new JLabel(" "));
         b.add(new JLabel(" Course Core Java in Hack Bulgaria"));
         b.add(new JLabel(" Web-site: https://hackbulgaria.com/"));
