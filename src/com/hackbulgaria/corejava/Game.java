@@ -230,8 +230,8 @@ public class Game implements Serializable {
 
     public void undo() {
         if (!undo.isEmpty() && undo.size() > 1) {
-            redo.push(undo.pop());
             board = undo.get(undo.size() - 1);
+            redo.push(undo.pop());
         }
     }
 
