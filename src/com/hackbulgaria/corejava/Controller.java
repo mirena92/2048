@@ -40,8 +40,13 @@ public class Controller implements Serializable {
     }
 
     public void load() {
+        FileInputStream fileIn = null;
         try {
-            FileInputStream fileIn = new FileInputStream("/home/emilian/tmp/game.ser");
+            if (System.getProperty("os.name").startsWith("Windows")) {
+                fileIn = new FileInputStream(System.getProperty("user.dir") + "\\game.ser");
+            } else {
+                fileIn = new FileInputStream(System.getProperty("user.dir") + "/game.ser");
+            }
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Controller newController = (Controller) in.readObject();
             game.setBoard(newController.game.getBoard());
@@ -58,8 +63,13 @@ public class Controller implements Serializable {
     }
 
     public void save() {
+        FileOutputStream fileOut = null;
         try {
-            FileOutputStream fileOut = new FileOutputStream("/home/emilian/tmp/game.ser");
+            if (System.getProperty("os.name").startsWith("Windows")) {
+                fileOut = new FileOutputStream(System.getProperty("user.dir") + "\\game.ser");
+            } else {
+                fileOut = new FileOutputStream(System.getProperty("user.dir") + "/game.ser");
+            }
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             out.close();
