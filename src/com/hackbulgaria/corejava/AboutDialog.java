@@ -1,23 +1,45 @@
 package com.hackbulgaria.corejava;
+import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class AboutDialog extends JDialog{
 
-      public AboutDialog(JFrame parent) {
-        super(parent, "About Dialog", true);
+    private static final long serialVersionUID = 1L;
+
+    public AboutDialog(JFrame parent) {
+        super(parent, "About...", true);
 
         Box b = Box.createVerticalBox();
+        try {
+            setIconImage(ImageIO.read(getClass().getResource("/question.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         b.add(Box.createGlue());
+        b.add(new JLabel("Course Core Java in Hack Bulgaria"));
+        b.add(new JLabel("Web-site: https://hackbulgaria.com/"));
+        b.add(new JLabel("Facebook: https://www.facebook.com/HackBulgaria"));
+        b.add(new JLabel(" "));
+        b.add(new JLabel("Lecturer: Georgi Pachov"));
+        b.add(new JLabel("Email: georgi.patchov@gmail.com"));
+        b.add(new JLabel(" "));
+        b.add(new JLabel(" "));
         b.add(new JLabel("Developers:"));
-        b.add(new JLabel("Emilian Stankov, Sofia University"));
-        b.add(new JLabel("Mirena Kermilska, Technical University of Sofia"));
+        b.add(new JLabel(" "));
+        b.add(new JLabel("  Emilian Stankov, Sofia University"));
+        b.add(new JLabel("  Email: ---"));
+        b.add(new JLabel(" "));
+        b.add(new JLabel("  Mirena Kermilska, Technical University of Sofia"));
+        b.add(new JLabel("  Email: mirena.k@abv.bg"));
         b.add(Box.createGlue());
         getContentPane().add(b, "Center");
 
@@ -32,6 +54,6 @@ public class AboutDialog extends JDialog{
           }
         });
 
-        setSize(350, 150);
+        setSize(350, 350);
       }
 }

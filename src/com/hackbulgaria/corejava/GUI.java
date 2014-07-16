@@ -127,6 +127,7 @@ public class GUI extends JFrame implements Visualization {
         
         JMenuItem newGame = new JMenuItem("New game");
         newGame.setFocusable(true);
+        newGame.setIcon(new ImageIcon(getClass().getResource("/newIcon.png").getPath().toString()));
         newGame.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -138,6 +139,7 @@ public class GUI extends JFrame implements Visualization {
         
         JMenuItem saveGame = new JMenuItem("Save game");
         saveGame.setFocusable(true);
+        saveGame.setIcon(new ImageIcon(getClass().getResource("/saveIcon.png").getPath().toString()));
         saveGame.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -149,6 +151,7 @@ public class GUI extends JFrame implements Visualization {
         
         JMenuItem loadGame = new JMenuItem("Load game");
         loadGame.setFocusable(true);
+        loadGame.setIcon(new ImageIcon(getClass().getResource("/loadIcon.png").getPath().toString()));
         loadGame.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -160,6 +163,7 @@ public class GUI extends JFrame implements Visualization {
         
         JMenuItem quit = new JMenuItem("Quit");
         quit.setFocusable(true);
+        quit.setIcon(new ImageIcon(getClass().getResource("/quitIcon.png").getPath().toString()));
         quit.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -179,6 +183,7 @@ public class GUI extends JFrame implements Visualization {
         
         JMenuItem undo = new JMenuItem("Undo");
         undo.setFocusable(true);
+        undo.setIcon(new ImageIcon(getClass().getResource("/undoIcon.png").getPath().toString()));
         undo.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -190,6 +195,7 @@ public class GUI extends JFrame implements Visualization {
         
         JMenuItem redo = new JMenuItem("Redo");
         redo.setFocusable(true);
+        redo.setIcon(new ImageIcon(getClass().getResource("/redoIcon.png").getPath().toString()));
         redo.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -204,15 +210,15 @@ public class GUI extends JFrame implements Visualization {
         menubar.add(edit);
         
         JMenu help = new JMenu("Help");
-        
         JMenuItem about = new JMenuItem("About...");
+        about.setIcon(new ImageIcon(getClass().getResource("/questionIcon.png").getPath().toString()));
         about.setFocusable(true);
         about.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                     JDialog f = new AboutDialog(new JFrame());
                     f.setLocationRelativeTo(null);
-                    f.show();
+                    f.setVisible(true);
             }
         });
         
@@ -222,23 +228,19 @@ public class GUI extends JFrame implements Visualization {
         setJMenuBar(menubar);
     }
     
-    private void addAboutBox() {
-
-    }
-    
     private static void initializeMap() throws IOException {
-        String parent = "C:\\Users\\RUSHI\\Desktop\\coreJava\\2048\\images\\";
-        mapImages.put(0, String.format("%s%s", parent, "empty.png"));
-        mapImages.put(2, String.format("%s%s", parent, "2.png"));
-        mapImages.put(4, String.format("%s%s", parent, "4.png"));
-        mapImages.put(8, String.format("%s%s", parent, "8.png"));
-        mapImages.put(16, String.format("%s%s", parent, "16.png"));
-        mapImages.put(32, String.format("%s%s", parent, "32.png"));
-        mapImages.put(64, String.format("%s%s", parent, "64.png"));
-        mapImages.put(128, String.format("%s%s", parent, "128.png"));
-        mapImages.put(256, String.format("%s%s", parent, "256.png"));
-        mapImages.put(512, String.format("%s%s", parent, "512.png"));
-        mapImages.put(1024, String.format("%s%s", parent, "1024.png"));
-        mapImages.put(2048, String.format("%s%s", parent, "2048.png"));
+
+        mapImages.put(0, GUI.class.getResource("/empty.png").getPath().toString());
+        mapImages.put(2, GUI.class.getResource("/2.png").getPath().toString());
+        mapImages.put(4, GUI.class.getResource("/4.png").getPath().toString());
+        mapImages.put(8, GUI.class.getResource("/8.png").getPath().toString());
+        mapImages.put(16, GUI.class.getResource("/16.png").getPath().toString());
+        mapImages.put(32, GUI.class.getResource("/32.png").getPath().toString());
+        mapImages.put(64, GUI.class.getResource("/64.png").getPath().toString());
+        mapImages.put(128, GUI.class.getResource("/128.png").getPath().toString());
+        mapImages.put(256, GUI.class.getResource("/256.png").getPath().toString());
+        mapImages.put(512, GUI.class.getResource("/512.png").getPath().toString());
+        mapImages.put(1024, GUI.class.getResource("/1024.png").getPath().toString());
+        mapImages.put(2048, GUI.class.getResource("/2048.png").getPath().toString());
     }
 }
