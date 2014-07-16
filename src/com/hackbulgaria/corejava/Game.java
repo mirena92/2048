@@ -234,5 +234,4 @@ public class Game implements Serializable {
             redo.push(undo.pop());
         }
     }
-
 }
